@@ -15,7 +15,7 @@ Goal: replace Claude Vision extraction with OpenAI API vision extraction while k
 - [x] Add `OPENAI_API_KEY` to backend environment configuration.
 - [x] Add `OPENAI_MODEL` with a sensible vision-capable default.
 - [x] Add OpenAI variables to `backend/.env.example`.
-- [ ] Consider adding `LLM_PROVIDER=openai` if keeping Claude as an optional fallback.
+- [x] Consider adding `LLM_PROVIDER=openai` if keeping Claude as an optional fallback.
 - [ ] Remove or deprecate `CLAUDE_API_KEY` and `CLAUDE_MODEL` once OpenAI extraction is verified.
 - [x] Update local `backend/.env` with the OpenAI key.
 - [ ] Update deployment environment variables.
@@ -80,7 +80,7 @@ Goal: replace Claude Vision extraction with OpenAI API vision extraction while k
 - [x] Search the repo for remaining `Claude`, `claude`, `Anthropic`, and `anthropic` references.
 - [x] Remove obsolete Claude-only test names after migration.
 - [ ] Remove unused config fields if Claude support is fully dropped.
-- [ ] Confirm no API keys are committed.
+- [x] Confirm no API keys are committed.
 - [x] Confirm `.env` files remain ignored.
 
 ## Suggested Implementation Order

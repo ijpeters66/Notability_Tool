@@ -1,5 +1,6 @@
 from functools import lru_cache
 from pathlib import Path
+from typing import Literal
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -13,6 +14,7 @@ class Settings(BaseSettings):
     upload_dir: Path = Path("uploads")
     max_upload_bytes: int = 30 * 1024 * 1024
     cors_origins: list[str] = ["http://localhost:5173", "http://localhost:3000"]
+    llm_provider: Literal["openai", "claude", "auto"] = "openai"
     openai_api_key: str | None = None
     openai_model: str = "gpt-5-mini"
     claude_api_key: str | None = None

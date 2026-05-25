@@ -262,9 +262,9 @@ def _extract_with_openai_vision(pdf_path: str, feedback: str = "") -> ExtractedD
 
 def extract_with_vision_model(pdf_path: str, feedback: str = "") -> ExtractedData:
     settings = get_settings()
-    if settings.openai_api_key:
+    if settings.llm_provider in ("openai", "auto") and settings.openai_api_key:
         return _extract_with_openai_vision(pdf_path, feedback)
-    if settings.claude_api_key:
+    if settings.llm_provider in ("claude", "auto") and settings.claude_api_key:
         return _extract_with_anthropic_vision(pdf_path, feedback)
 
     reader = PdfReader(pdf_path)

@@ -42,6 +42,7 @@ Backend:
 
 - `DATABASE_URL` - PostgreSQL URL for deployment. Defaults to local SQLite.
 - `JWT_SECRET` - secret used to sign JWTs.
+- `LLM_PROVIDER` - extraction provider: `openai`, `claude`, or `auto`. Defaults to `openai`.
 - `OPENAI_API_KEY` - OpenAI API key for vision extraction.
 - `OPENAI_MODEL` - OpenAI model for vision extraction. Defaults to `gpt-5-mini`.
 - `CLAUDE_API_KEY` - optional legacy Claude Vision extraction key, used only if OpenAI is not configured.
@@ -91,7 +92,7 @@ curl -X POST http://localhost:8000/consultations/upload \
 
 ## MVP Notes
 
-The extraction service renders PDF pages with `pdftoppm` and uses OpenAI vision extraction when `OPENAI_API_KEY` is set. If OpenAI is not configured, it can still use the legacy Claude path when `CLAUDE_API_KEY` is set. Without either key, it falls back to `pypdf` text extraction and clearly flags that handwriting has not been captured. The first client sample is about 21 MB, so the default upload limit is 30 MB rather than the original 10 MB planning value.
+The extraction service renders PDF pages with `pdftoppm` and uses OpenAI vision extraction when `LLM_PROVIDER=openai` and `OPENAI_API_KEY` is set. Set `LLM_PROVIDER=claude` to use the legacy Claude path, or `LLM_PROVIDER=auto` to try OpenAI first and then Claude. Without a configured provider key, it falls back to `pypdf` text extraction and clearly flags that handwriting has not been captured. The first client sample is about 21 MB, so the default upload limit is 30 MB rather than the original 10 MB planning value.
 
 Drawings, diagrams, and photos are captured as `visual_notes` during vision extraction. They are summarized separately from text fields, and the original PDF should still be pushed as a ServiceM8 attachment as the source of truth.
 
