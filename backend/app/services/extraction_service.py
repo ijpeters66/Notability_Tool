@@ -104,6 +104,7 @@ def _extracted_data_json_schema() -> dict:
                     "email": nullable_string,
                     "address": nullable_string,
                 },
+                "required": ["name", "phone", "email", "address"],
             },
             "job_details": {
                 "type": "object",
@@ -113,6 +114,7 @@ def _extracted_data_json_schema() -> dict:
                     "job_type": nullable_string,
                     "estimated_cost": {"anyOf": [{"type": "string"}, {"type": "number"}, {"type": "null"}]},
                 },
+                "required": ["location", "job_type", "estimated_cost"],
             },
             "findings": {
                 "type": "array",

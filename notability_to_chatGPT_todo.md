@@ -17,7 +17,7 @@ Goal: replace Claude Vision extraction with OpenAI API vision extraction while k
 - [x] Add OpenAI variables to `backend/.env.example`.
 - [ ] Consider adding `LLM_PROVIDER=openai` if keeping Claude as an optional fallback.
 - [ ] Remove or deprecate `CLAUDE_API_KEY` and `CLAUDE_MODEL` once OpenAI extraction is verified.
-- [ ] Update local `backend/.env` with the OpenAI key.
+- [x] Update local `backend/.env` with the OpenAI key.
 - [ ] Update deployment environment variables.
 
 ## 3. Backend Extraction Service
@@ -55,6 +55,7 @@ Goal: replace Claude Vision extraction with OpenAI API vision extraction while k
 - [x] Rename `backend/test_claude_extract.py` to something like `backend/test_vision_extract.py`.
 - [x] Update imports and function names in the test script.
 - [ ] Run extraction against `files/Anne Donohoe.pdf`.
+- [ ] Resolve OpenAI `insufficient_quota` response for the configured API key.
 - [ ] Verify handwritten content appears in `raw_text`.
 - [ ] Verify `client_details`, `job_details`, `findings`, `recommendations`, `follow_up_actions`, and `visual_notes` validate correctly.
 - [x] Test the no-key fallback path.
