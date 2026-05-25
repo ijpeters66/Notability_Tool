@@ -60,8 +60,10 @@ Goal: replace Claude Vision extraction with OpenAI API vision extraction while k
 - [x] Test the no-key fallback path.
 - [x] Test re-extraction with feedback.
 - [x] Test backend upload smoke path with no external API key configured.
+- [x] Confirm frontend production build succeeds.
+- [x] Confirm frontend dev server serves the app.
 - [ ] Test upload through the frontend and confirm the review page still renders.
-- [ ] Push a reviewed consultation to ServiceM8 mock or real API depending on environment.
+- [x] Push a reviewed consultation to ServiceM8 mock or real API depending on environment.
 
 ## 7. Documentation
 
