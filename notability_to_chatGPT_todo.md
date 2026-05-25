@@ -83,6 +83,59 @@ Goal: replace Claude Vision extraction with OpenAI API vision extraction while k
 - [x] Confirm no API keys are committed.
 - [x] Confirm `.env` files remain ignored.
 
+## 9. Email Intake Automation Recommendation
+
+Recommendation: build email intake as the next client-facing workflow, but start semi-automatic rather than fully automatic.
+
+Target workflow:
+
+- [ ] Client keeps emailing Notability PDF job sheets as normal.
+- [ ] Prefer a dedicated mailbox or alias, such as `jobsheets@clientdomain.com`.
+- [ ] App scans the mailbox every 5-15 minutes.
+- [ ] App finds unread or labelled emails with PDF attachments.
+- [ ] App downloads and stores the original PDF as the source-of-truth audit file.
+- [ ] App creates a consultation/extraction record.
+- [ ] OpenAI vision extraction transcribes handwriting, diagrams, sketches, and notes.
+- [ ] Office manager reviews the extracted data in the web app.
+- [ ] Office manager approves the result.
+- [ ] App pushes approved data and original PDF attachment to ServiceM8.
+- [ ] App marks the email processed or applies a processed label.
+- [ ] App notifies the office manager when processing succeeds, needs review, or fails.
+
+Phase 1 recommendation:
+
+- [ ] Do not auto-push directly to ServiceM8 yet.
+- [ ] Require office manager review/approval before ServiceM8 push.
+- [ ] Capture extraction errors and low-confidence cases as "needs review".
+- [ ] Keep the manual web upload as a fallback path.
+
+Phase 2 option:
+
+- [ ] Auto-push only trusted, low-risk jobs once the client has reviewed enough successful examples.
+- [ ] Flag uncertain handwriting, missing customer/job details, or ambiguous ServiceM8 matches for human review.
+- [ ] Add a daily processing summary email.
+
+Implementation options:
+
+- [ ] Confirm mailbox provider: Google Workspace/Gmail, Microsoft 365/Outlook, or generic IMAP.
+- [ ] Gmail path: Gmail API with OAuth and labels.
+- [ ] Microsoft path: Microsoft Graph API with mailbox permissions.
+- [ ] Generic path: IMAP polling with app password or mailbox credentials.
+- [ ] Add a scheduled worker/cron job in production.
+- [ ] Store processed message IDs to avoid duplicate processing.
+- [ ] Add retry handling for failed extraction or ServiceM8 push.
+- [ ] Add audit log entries for email detected, PDF downloaded, extraction completed, review approved, and ServiceM8 push.
+
+Client questions before building:
+
+- [ ] Which email provider do they use?
+- [ ] Do PDFs always come from the same sender or device?
+- [ ] Are there multiple consultants sending PDFs?
+- [ ] Does each PDF include a ServiceM8 job number, customer name, address, or other matching field?
+- [ ] Should unmatched PDFs create new ServiceM8 jobs or wait for manual matching?
+- [ ] Who should receive success/failure notifications?
+- [ ] How long should original PDFs and extracted data be retained?
+
 ## Suggested Implementation Order
 
 1. [x] Add OpenAI config.
